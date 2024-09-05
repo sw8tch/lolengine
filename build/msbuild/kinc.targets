@@ -40,17 +40,4 @@
     <WriteLinesToFile File="$(OutDir)steam_appid.txt" Lines="$(KincSteamAppId)" Overwrite="True"/>
   </Target>
 
-  <Target Name="AfterBuild" Condition="'$(Platform)'=='NX64'">
-   <ItemGroup>
-      <ShaderFiles Include="$(OutDir)*.frag"/>
-    </ItemGroup>
-    <ItemGroup>
-      <BiosFile Include="pico8\bios.p8" />
-    </ItemGroup>
-    <Message Text="Copying shaders to switch data directory" Importance="high"/>
-    <Copy SourceFiles="%(ShaderFiles.Identity)" DestinationFolder="$(ApplicationDataDir)/shaders" ContinueOnError="true" />
-    <Message Text="Copying bios file : %(BiosFile.FullPath) to switch data directory" Importance="high"/>
-    <Copy SourceFiles="%(BiosFile.Identity)" DestinationFolder="$(ApplicationDataDir)/pico8" ContinueOnError="true" />
-  </Target>
-
 </Project>

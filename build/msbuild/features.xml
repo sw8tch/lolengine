@@ -103,13 +103,20 @@
 
     <!-- Steamworks support -->
     <BoolProperty Name="KincUseSteamworks" DisplayName="Use Steamworks SDK" Description="Enable Steamworks support (Windows and Linux only)"
-                  Default="false" Category="Kinc">
+                  Default="false" Category="Kinc" >
     </BoolProperty>
 
     <StringProperty Name="KincSteamAppId" DisplayName="Steam App ID" Description="Steam App ID"
                     Default="" Category="Kinc">
     </StringProperty>
 
+
+    <StringProperty Name="FilesToPackage" Visible="true" DisplayName="Files to package on Switch" Description="list of files to package in the data directory on Switch"
+                  Default="" Category="Authoring">
+    </StringProperty>
+    <StringProperty Name="CartsDirectory" Visible="true" DisplayName="Carts folder name In Switch Package" Description="Name of the folder the Carts will be stored (from rom root)"
+                  Default="" Category="Authoring">
+    </StringProperty>
   </Rule>
 
 </ProjectSchemaDefinitions>

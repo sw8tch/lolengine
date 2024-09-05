@@ -110,8 +110,8 @@
                     Default="" Category="Kinc">
     </StringProperty>
 
-
-    <StringProperty Name="FilesToPackage" Visible="true" DisplayName="Files to package on Switch" Description="list of files to package in the data directory on Switch"
+    <!--  Packaging files for Switch platform -->
+    <StringProperty Name="FilesToPackage" Visible="true" DisplayName="Folder containing the files to package on Switch" Description="list of files to package in the data directory on Switch (no ending /)"
                   Default="" Category="Authoring">
     </StringProperty>
     <StringProperty Name="CartsDirectory" Visible="true" DisplayName="Carts folder name In Switch Package" Description="Name of the folder the Carts will be stored (from rom root)"

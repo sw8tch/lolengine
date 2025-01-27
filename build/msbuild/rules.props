@@ -7,7 +7,7 @@
 
   <PropertyGroup>
     <!-- Use MakeRelative() so that <ObjectFileName> can use %(RelativeDir) -->
-    <BinDir>$([MSBuild]::MakeRelative("$(ProjectDir)","$(SolutionDir)binaries\"))</BinDir>
+    <BinDir>$([MSBuild]::MakeRelative("$(MSBuildProjectDirectory)\\","$(SolutionDir)binaries\"))</BinDir>
     <OutDir>$(BinDir)$(Platform.ToLower())-$(PlatformToolset.ToLower())-$(Configuration.ToLower())\</OutDir>
     <IntDir>$(OutDir)obj\$(ProjectName)\</IntDir>
     <ObjectExt Condition="'$(ObjectExt)'==''">.obj</ObjectExt>
@@ -62,6 +62,15 @@
           %(AdditionalIncludeDirectories)
       </AdditionalIncludeDirectories>
 
+      <AdditionalIncludeDirectories Condition="'$(Platform)'=='Gaming.Xbox.Scarlett.x64'">
+          $(SdlIncludes);
+          $(CppHttpIncludes);
+          $(FfmpegIncludes);
+          $(AssimpIncludes);
+          $(XinputIncludes);
+          %(AdditionalIncludeDirectories)
+      </AdditionalIncludeDirectories>
+
       <AdditionalPreprocessorDefinitions>
           $(KincDefines);
           $(SteamDefines);
@@ -79,11 +88,13 @@
       <PreprocessorDefinitions Condition="'$(Platform)'=='Win32'">WIN32;$(Win32Defines);%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <PreprocessorDefinitions Condition="'$(Platform)'=='x64'">WIN32;$(Win32Defines);%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <PreprocessorDefinitions Condition="'$(Platform)'=='Orbis'">$(OrbisDefines);%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions Condition="'$(Platform)'=='Gaming.Xbox.Scarlett.x64'">$(XboxDefines);%(PreprocessorDefinitions)</PreprocessorDefinitions>
     </ClCompile>
     <ClCompile Condition="'$(Configuration)'=='Debug'">
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <Optimization>Disabled</Optimization>
       <RuntimeLibrary Condition="'$(Platform)'=='Win32' Or '$(Platform)'=='x64'">MultiThreadedDebugDLL</RuntimeLibrary>
+      <RuntimeLibrary Condition="'$(Platform)'=='Gaming.Xbox.Scarlett.x64'">MultiThreadedDebugDLL</RuntimeLibrary>
       <PreprocessorDefinitions>_DEBUG;LOL_BUILD_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
     </ClCompile>
     <ClCompile Condition="'$(Configuration)'=='Release'">
@@ -92,6 +103,7 @@
       <Optimization>MaxSpeed</Optimization>
 
       <RuntimeLibrary Condition="'$(Platform)'=='Win32' Or '$(Platform)'=='x64'">MultiThreadedDLL</RuntimeLibrary>
+      <RuntimeLibrary Condition="'$(Platform)'=='Gaming.Xbox.Scarlett.x64'">MultiThreadedDLL</RuntimeLibrary>
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <FavorSizeOrSpeed>Speed</FavorSizeOrSpeed>
@@ -111,10 +123,20 @@
       <SubSystem Condition="'$(enable_sdl)'!='no'">Windows</SubSystem>
       <SubSystem Condition="'$(enable_sdl)'=='no'">Console</SubSystem>
     </Link>
+
     <Link Condition="'$(Platform)'=='Orbis'">
       <AdditionalLibraryDirectories>$(OrbisLibs);%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <AdditionalDependencies>$(OrbisDeps);%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
+
+    <Link Condition="'$(Platform)'=='Gaming.Xbox.XboxOne.x64' or '$(Platform)'=='Gaming.Xbox.Scarlett.x64'">
+
+      <!-- FIXME: not for the static library! -->
+      <!-- <AdditionalDependencies>kernel32.lib;user32.lib;gdi32.lib;winspool.lib;comdlg32.lib;advapi32.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;odbc32.lib;odbccp32.lib;$(SdlDeps);$(KincDeps);$(XboxDeps);$(SteamDeps);$(AssimpDeps);$(LibGccDeps);$(GdiDeps);$(XinputDeps);%(AdditionalDependencies)</AdditionalDependencies> -->
+      <AdditionalLibraryDirectories>$(XboxLibs);%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalDependencies>$(XboxDeps);%(AdditionalDependencies)</AdditionalDependencies>
+    </Link>
+
     <Link Condition="'$(Configuration)'=='Debug'">
       <GenerateDebugInformation>true</GenerateDebugInformation>
     </Link>

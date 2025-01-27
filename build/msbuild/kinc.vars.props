@@ -108,6 +108,41 @@
     </KincDeps>
   </PropertyGroup>
 
+  <PropertyGroup Label="UserMacros" Condition="'$(Platform)'=='Gaming.Xbox.XboxOne.x64' or '$(Platform)'=='Gaming.Xbox.Scarlett.x64'">
+    <ShaderCompiler>$(KINC_SDK_PATH)\..\Backends\Xbox\tools\krafix-xboxseries.exe</ShaderCompiler>
+    <ShaderPlatform>xboxseries</ShaderPlatform>
+    <ShaderProfile>xboxseries</ShaderProfile>
+    <KincIncludes>
+      $(KincIncludes);
+      $(KINC_SDK_PATH)\Backends\Graphics4\G4onG5\Sources;
+      <!-- $(KINC_SDK_PATH)\Backends\Graphics5\G5onG4\Sources; -->
+      $(KINC_SDK_PATH)\..\Backends\Xbox\Sources;
+      $(KINC_SDK_PATH)\Backends\Graphics5\Direct3D12\Sources;
+      $(KINC_SDK_PATH)\Backends\System\Microsoft\Sources;
+      $(KINC_SDK_PATH)\Backends\Audio2\WASAPI\Sources;
+      <!-- ..\..\Kinc\Sources;
+      ..\..\Kinc\Backends\Graphics4\G4onG5\Sources;
+      ..\..\Kinc\Backends\System\Microsoft\Sources;
+      ..\..\Kinc\Backends\Graphics5\Direct3D12\Sources;
+      ..\..\Kinc\Backends\Audio2\WASAPI\Sources;
+      ..\..\Backends\Xbox\Sources -->
+    </KincIncludes>
+    <KincDefines>
+      $(KincDefines);
+      KINC_CONSOLE;KINC_XBOX_SERIES;KINC_XBOX;KINC_DIRECT3D;KINC_DIRECT3D12;KINC_DXC;KINC_DIRECT3D_HAS_NO_SWAPCHAIN;
+      KORE_CONSOLE;KORE_XBOX_SERIES;KORE_XBOX;KORE_NO_MAIN;KORE_DIRECT3D;KORE_DIRECT3D12;KORE_DXC;KORE_DIRECT3D_HAS_NO_SWAPCHAIN;
+      KINC_G4ONG5;
+      <!-- KINC_NO_MAIN; -->
+      _DEBUG;KINC_G1;KORE_G1;KINC_G2;KORE_G2;KINC_G3;KORE_G3;KINC_A1;KORE_A1;KINC_A2;KORE_A2;KINC_LZ4X;KORE_LZ4X;KINC_G4;KORE_G4;KINC_G5;KORE_G5;KINC_G4ONG5;KORE_G4ONG5;KINC_XBOX_SERIES;KORE_XBOX_SERIES;KINC_CONSOLE;KORE_CONSOLE;KINC_DIRECT3D;KORE_DIRECT3D;KINC_DIRECT3D12;KORE_DIRECT3D12;KINC_DXC;KORE_DXC;KINC_DIRECT3D_HAS_NO_SWAPCHAIN;KORE_DIRECT3D_HAS_NO_SWAPCHAIN;;PROFILE;
+      UNICODE;
+      _ITERATOR_DEBUG_LEVEL=0;
+    </KincDefines>
+    <KincDeps>
+      winhttp.lib;d3d12.lib;dxguid.lib;dinput8.lib;strmiids.lib;winmm.lib;wbemuuid.lib;
+    </KincDeps>
+    <GDKExtLibNames>Xbox.Services.API.C</GDKExtLibNames>
+  </PropertyGroup>
+
   <ItemGroup Label="UserMacros">
     <BuildMacro Include="KincDeps"><Value>$(KincDeps)</Value></BuildMacro>
     <BuildMacro Include="KincLibs"><Value>$(KincLibs)</Value></BuildMacro>

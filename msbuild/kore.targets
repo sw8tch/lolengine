@@ -108,7 +108,8 @@
 
     <Message Importance="High" Text="Running Packaging command using $(MGCToolExe)" />
     <MakeDir Directories="$(OutDir)PackagedVersion"/>
-    <Exec Command="&quot;$(MGCToolExe.Replace('\','\\'))&quot; pack /$(LolXboxEncryptionLevel) $(SECRETLEKB) /f $(OutDir)authoring/layout.xml /d $(OutDir) /pd $(OutDir)PackagedVersion "/>
+    <Exec Condition="'$(Platform)'=='gaming.xbox.scarlett.x64'" Command="&quot;$(MGCToolExe.Replace('\','\\'))&quot; pack /$(LolXboxEncryptionLevel) $(SECRETLEKB) /f $(OutDir)authoring/layout.xml /d $(OutDir) /pd $(OutDir)PackagedVersion  /gameos &quot;$(GameOSFilePath.Replace('\','\\'))&quot;"/>
+    <Exec Condition="'$(LolWindowsPublishingPlatform)'=='msstore' and '$(Platform)'=='x64'" Command="&quot;$(MGCToolExe.Replace('\','\\'))&quot; pack /$(LolXboxEncryptionLevel) $(SECRETLEKB) /f $(OutDir)authoring/layout.xml /d $(OutDir) /pd $(OutDir)PackagedVersion  /nogameos"/>
   </Target>
 
 </Project>

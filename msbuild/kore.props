@@ -128,7 +128,7 @@
       $(KoreIncludes)
     </KoreIncludes>
     <KoreDefines>
-      KINC_USE_MSSTORE;
+      KINC_USE_MSSTORE;KINC_XBOX_TITLEID="$(LolXboxTitleId)";
       $(KoreDefines)
     </KoreDefines>
     <KoreDeps>

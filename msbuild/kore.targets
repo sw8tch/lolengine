@@ -97,9 +97,9 @@
           SourceFiles="$(FinalizeGameConfigSource)"
           DestinationFiles="$(OutDir)MicrosoftGame.Config" />
 
-    <Message Importance="High" Text="Running Packaging command" />
+    <Message Importance="High" Text="Running Packaging command using $(MGCToolExe)" />
     <MakeDir Directories="$(OutDir)PackagedVersion"/>
-    <Exec Command="&quot;$(MGCToolExe.Replace('\','\\'))&quot; pack /$(LolXboxEncryptionLevel) $(SECRETLEKB) /f $(OutDir)authoring/layout.xml /d $(OutDir) /pd $(OutDir)PackagedVersion "/>
+    <Exec Command="&quot;$(GameDK.Replace('\','\\'))\bin\makepkg.exe&quot; pack /$(LolXboxEncryptionLevel) $(SECRETLEKB) /f $(OutDir)authoring/layout.xml /nogameos /d $(OutDir) /pd $(OutDir)PackagedVersion "/>
   </Target>
 
 </Project>

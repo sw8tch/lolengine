@@ -126,8 +126,11 @@
 
     <Message Importance="High" Text="Running Packaging command using $(MGCToolExe)" />
     <MakeDir Directories="$(OutDir)PackagedVersion"/>
-    <Exec Condition="'$(Platform)'=='x64'" Command="&quot;$(MGCToolExe.Replace('\','\\'))&quot; pack /$(LolXboxEncryptionLevel) $(SECRETLEKB) /f $(OutDir)authoring/layout.xml /pc /nogameos /d $(OutDir) /pd $(OutDir)PackagedVersion "/>
-    <Exec Condition="'$(Platform)'=='Gaming.Xbox.Scarlett.x64'" Command="&quot;$(MGCToolExe.Replace('\','\\'))&quot; pack /$(LolXboxEncryptionLevel) $(SECRETLEKB) /f $(OutDir)authoring/layout.xml /gameos &quot;$(GameOSFilePath.Replace('\','\\'))&quot;  /d $(OutDir) /pd $(OutDir)PackagedVersion "/>
+    <Exec Condition="'$(Platform)'=='x64' and $(LolXboxEncryptionLevel) == 'lk'" Command="&quot;$(MGCToolExe.Replace('\','\\'))&quot; pack /$(LolXboxEncryptionLevel) $(SECRETLEKB) /f $(OutDir)authoring/layout.xml /pc /nogameos /d $(OutDir) /pd $(OutDir)PackagedVersion "/>
+    <Exec Condition="'$(Platform)'=='x64' and $(LolXboxEncryptionLevel) == 'lt'" Command="&quot;$(MGCToolExe.Replace('\','\\'))&quot; pack /f $(OutDir)authoring/layout.xml /pc /nogameos /d $(OutDir) /pd $(OutDir)PackagedVersion "/>
+    <Exec Condition="'$(Platform)'=='x64' and $(LolXboxEncryptionLevel) == ''" Command="&quot;$(MGCToolExe.Replace('\','\\'))&quot; pack /f $(OutDir)authoring/layout.xml /gameos &quot;$(GameOSFilePath.Replace('\','\\'))&quot;  /d $(OutDir) /pd $(OutDir)PackagedVersion "/>
+    <Exec Condition="'$(Platform)'=='Gaming.Xbox.Scarlett.x64' " Command="&quot;$(MGCToolExe.Replace('\','\\'))&quot; pack /$(LolXboxEncryptionLevel) $(SECRETLEKB) /f $(OutDir)authoring/layout.xml /gameos &quot;$(GameOSFilePath.Replace('\','\\'))&quot;  /d $(OutDir) /pd $(OutDir)PackagedVersion "/>
+    
   </Target>
 
 </Project>

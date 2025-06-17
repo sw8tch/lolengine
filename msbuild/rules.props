@@ -183,7 +183,7 @@
      - https://learn.microsoft.com/fr-fr/gaming/gdk/_content/gc/tools-pc/visualstudio/gr-vs-templates -->
   <ItemDefinitionGroup Condition="'$(ConfigurationType)'=='Application' and '$(LolWindowsPublishingPlatform)'=='msstore' and '$(Platform)'=='x64'">
     <ClCompile>
-      <PreprocessorDefinitions>_GAMING_DESKTOP;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>_GAMING_DESKTOP;KINC_USE_XBL;KINC_USE_MSSTORE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
     </ClCompile>
     <Link>
       <AdditionalDependencies>xgameruntime.lib;gameinput.lib;%(AdditionalDependencies)</AdditionalDependencies>

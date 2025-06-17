@@ -120,15 +120,15 @@
 
   <PropertyGroup Condition="'$(ConfigurationType)'=='Application' and '$(LolWindowsPublishingPlatform)'=='msstore' and '$(Platform)'=='x64'">
     <KoreSources>
-      $(KoreDirectory)/Backends/Service/MSStore/Sources/kinc/backend;
+      $(KoreDirectory)/Backends/Service/XBLiveServices/Sources/kinc/backend;
       $(KoreSources)
     </KoreSources>
     <KoreIncludes>
-      $(KoreDirectory)/Backends/Service/MSStore/Sources;
+      $(KoreDirectory)/Backends/Service/XBLiveServices/Sources;
       $(KoreIncludes)
     </KoreIncludes>
     <KoreDefines>
-      KINC_USE_MSSTORE;KINC_XBOX_TITLEID="$(LolXboxTitleId)";
+      KINC_USE_MSSTORE;KINC_USE_XBL;KINC_XBOX_TITLEID="$(LolXboxTitleId)";
       $(KoreDefines)
     </KoreDefines>
     <KoreDeps>
